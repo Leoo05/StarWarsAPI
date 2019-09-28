@@ -16,12 +16,13 @@ import java.util.ArrayList;
 
 public class People extends AppCompatActivity {
 
-    static String json;
-    static ArrayList<Persona> personas;
-    static Button sig;
-    static Button ant;
-    static TextView atr;
-    static int index=0;
+    String json;
+    ArrayList<Persona> lista_personas;
+    Button sig;
+    Button ant;
+    TextView atr;
+    int index = 0;
+    String nextPage;
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
@@ -32,38 +33,49 @@ public class People extends AppCompatActivity {
         sig = findViewById(R.id.button_siguiente);
         ant = findViewById(R.id.button_anterior);
         atr = findViewById(R.id.textView_atributos);
-        this.personas = new ArrayList<>();
-
+        this.lista_personas = new ArrayList<>();
         json = getIntent().getStringExtra("json");
-        try {
-            JSONObject jsonObject = new JSONObject(json);
-            JSONArray arrpersonas = new JSONArray(jsonObject.getJSONArray("results"));
-            for(int i=0;i<arrpersonas.length();i++){
-                JSONObject persona = arrpersonas.getJSONObject(i);
-                this.personas.add(new Persona(persona.getString("name"),persona.getInt("height"),
-                        persona.getInt("mass"),persona.getString("hair_color"),persona.getString("skin_color"),persona.getString("eye_color"),persona.getString("birth_year")
-                        ,persona.getString("gender")));
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        atr.setText(this.personas.get(0).toString());
+        nextPage = getIntent().getStringExtra("nextPage");
+        agregarPersonas();
 
         sig.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                index = (index + 1) % (personas.size() - 1);
-                atr.setText(personas.get(index).toString());
+                index = (index + 1) % (lista_personas.size() - 1);
+                agregarPersonas();
+                atr.setText(lista_personas.get(index).toString());
             }
         });
 
         ant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                index = (index - 1) % (personas.size() - 1);
+                agregarPersonas();
+                index = (index - 1) % (lista_personas.size() - 1);
+                atr.setText(lista_personas.get(index).toString());
             }
         });
 
 
+    }
+
+    public void agregarPersonas() {
+
+        try {
+
+            JSONObject jsonObject = new JSONObject(json);
+            JSONArray jsonArray = new JSONArray(jsonObject.getJSONArray("results"));
+            for (int i = 0; i < jsonArray.length(); i++) {
+
+                JSONObject persona = jsonArray.getJSONObject(i);
+                this.lista_personas.add(new Persona(persona.getString("name"), persona.getInt("height"),
+                        persona.getInt("mass"), persona.getString("hair_color"), persona.getString("skin_color"), persona.getString("eye_color"), persona.getString("birth_year")
+                        , persona.getString("gender")));
+
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+            atr.setText(json);
+        }
     }
 }
