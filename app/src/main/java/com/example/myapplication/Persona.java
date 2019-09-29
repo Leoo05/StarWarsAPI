@@ -3,15 +3,15 @@ package com.example.myapplication;
 public class Persona {
 
     public String nombre;
-    public int height;
-    public int mass;
+    public String height;
+    public String mass;
     public String hair_color;
     public String skin_color;
     public String eye_color;
     public String birth_year;
     public String gender;
 
-    public Persona(String nombre, int height, int mass, String hair_color, String skin_color, String eye_color, String birth_year, String gender) {
+    public Persona(String nombre, String height, String mass, String hair_color, String skin_color, String eye_color, String birth_year, String gender) {
         this.nombre = nombre;
         this.height = height;
         this.mass = mass;

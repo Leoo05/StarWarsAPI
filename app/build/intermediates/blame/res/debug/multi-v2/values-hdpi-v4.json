@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\Stiven\\AndroidStudioProjects\\StarWarsAPI\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-hdpi-v4\\values-hdpi-v4.xml",
+            "outputFile": "D:\\U\\7mo semestre\\IngeSoft 2_Moviles\\Ejercicios\\APIs\\StarWarsAPI\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-hdpi-v4\\values-hdpi-v4.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Stiven\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\da45c2b5a0b77c19d724eccbd96fe251\\res\\values-hdpi-v4\\values-hdpi-v4.xml",
+                    "source": "C:\\Users\\Usuario\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\93a21ed22dd01696a234ef62e49e0da8\\res\\values-hdpi-v4\\values-hdpi-v4.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
