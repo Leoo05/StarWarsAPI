@@ -77,10 +77,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void makeCallPlanets(View v) throws JSONException {
         callWebService("planets/");
-        Intent next = new Intent(MainActivity.this, Planets.class);
-        next.putExtra("json", obj.getString("results"));
-        next.putExtra("nextPage", obj.getString("next"));
-        startActivity(next);
+        if(obj !=null) {
+            Intent next = new Intent(MainActivity.this, Planets.class);
+            next.putExtra("json", obj.getString("results"));
+            next.putExtra("nextPage", obj.getString("next"));
+            startActivity(next);
+        }
     }
 
     public void callWebService(final String serviceEndPoint) {

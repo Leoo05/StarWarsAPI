@@ -27,16 +27,15 @@ public class Planeta {
 
     @Override
     public String toString() {
-        return "Planeta{" +
-                "name='" + name + '\'' +
-                ", rotation_period=" + rotation_period +
-                ", orbital_period=" + orbital_period +
-                ", diameter=" + diameter +
-                ", temperature='" + temperature + '\'' +
-                ", gravity='" + gravity + '\'' +
-                ", terrain='" + terrain + '\'' +
-                ", surface_water=" + surface_water +
-                ", population='" + population + '\'' +
-                '}';
+        return
+                "Nombre=" + name + '\n' +
+                "Periodo de Rotacion=" + rotation_period + '\n' +
+                "Periodo de orbita=" + orbital_period + '\n' +
+                "Diametro=" + diameter + '\n' +
+                "Temperatura=" + temperature + '\n' +
+                "Gravedad='" + gravity + '\n' +
+                "Terreno=" + terrain + '\n' +
+                "Superficie de Agua=" + surface_water + '\n' +
+                "Poblacion=" + population + '\n';
     }
 }

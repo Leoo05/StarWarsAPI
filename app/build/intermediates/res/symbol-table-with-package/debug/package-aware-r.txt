@@ -784,7 +784,9 @@ id text2
 id textSpacerNoButtons
 id textSpacerNoTitle
 id textView_atributos
+id textView_atributos_planetas
 id textView_personas
+id textView_planetas
 id textView_titulo
 id time
 id title

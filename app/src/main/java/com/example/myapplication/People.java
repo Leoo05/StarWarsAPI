@@ -38,15 +38,19 @@ public class People extends AppCompatActivity {
         json = getIntent().getStringExtra("json");
         nextPage = getIntent().getStringExtra("nextPage");
         this.agregarPersonas();
-
+        atr.setText(lista_personas.get(index).toString());
         sig.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                index = (index + 1) % (lista_personas.size() - 1);
+                index++;
+                //index = (index + 1) % (lista_personas.size() - 1);
+                if(index>lista_personas.size()-1){
+                    index=0;
+                }
                 try {
                     atr.setText(lista_personas.get(index).toString());
                 }  catch (IndexOutOfBoundsException e){
-                    atr.setText("F");
+                    atr.setText("Se salio del arreglo");
                 }
             }
         });
@@ -54,11 +58,15 @@ public class People extends AppCompatActivity {
         ant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                index = (index - 1) % (lista_personas.size() - 1);
+                //index = (index - 1) % (lista_personas.size() - 1);
+                index--;
+                if(index<0){
+                    index=lista_personas.size()-1;
+                }
                 try {
                     atr.setText(lista_personas.get(index).toString());
                 }  catch (IndexOutOfBoundsException e){
-                    atr.setText("F");
+                    atr.setText("Se salio del arreglo");
                 }
             }
         });
@@ -80,7 +88,6 @@ public class People extends AppCompatActivity {
             }
         } catch (JSONException e) {
             e.printStackTrace();
-            atr.setText(nextPage);
         }
     }
 }

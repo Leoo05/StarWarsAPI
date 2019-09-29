@@ -28,26 +28,31 @@ public class Planets extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_people);
+        setContentView(R.layout.activity_planets);
 
         sig = findViewById(R.id.button_siguiente);
         ant = findViewById(R.id.button_anterior);
-        atr = findViewById(R.id.textView_atributos);
+        atr = findViewById(R.id.textView_atributos_planetas);
 
         this.listaPlanetas = new ArrayList<>();
         json = getIntent().getStringExtra("json");
         nextPage = getIntent().getStringExtra("nextPage");
         this.agregarPlanetas();
+        atr.setText(listaPlanetas.get(index).toString());
 
 
         sig.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                index = (index + 1) % (listaPlanetas.size() - 1);
+                //index = (index + 1) % (listaPlanetas.size() - 1);
+                index++;
+                if(index>listaPlanetas.size()-1){
+                    index=0;
+                }
                 try {
                     atr.setText(listaPlanetas.get(index).toString());
                 }  catch (IndexOutOfBoundsException e){
-                    atr.setText("F");
+                    atr.setText("Se salio del arreglo >:v");
                 }
             }
         });
@@ -55,11 +60,14 @@ public class Planets extends AppCompatActivity {
         ant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                index = (index - 1) % (listaPlanetas.size() - 1);
+                index--;
+                if(index<0){
+                    index=listaPlanetas.size()-1;
+                }
                 try {
                     atr.setText(listaPlanetas.get(index).toString());
                 }  catch (IndexOutOfBoundsException e){
-                    atr.setText("F");
+                    atr.setText("Se salio del arreglo >:v");
                 }
             }
         });
@@ -81,7 +89,6 @@ public class Planets extends AppCompatActivity {
             }
         } catch (JSONException e) {
             e.printStackTrace();
-            atr.setText(nextPage);
         }
     }
 }

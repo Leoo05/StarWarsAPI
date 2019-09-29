@@ -25,14 +25,12 @@ public class Persona {
     @Override
     public String toString() {
         return
-                " Nombre='" + nombre + '\'' +
-                ", height=" + height +
-                ", mass=" + mass +
-                ", hair_color='" + hair_color + '\'' +
-                ", skin_color='" + skin_color + '\'' +
-                ", eye_color='" + eye_color + '\'' +
-                ", birth_year='" + birth_year + '\'' +
-                ", gender='" + gender + '\'' +
-                '}';
+                "Nombre=" + nombre + '\n' + "Altura=" + height + '\n' +
+                "Peso=" + mass + '\n' +
+                "Color del Cabello=" + hair_color + '\n' +
+                "Color de Piel=" + skin_color + '\n' +
+                "Color de Ojos=" + eye_color + '\n' +
+                "Año de Nacimiento=" + birth_year + '\n' +
+                "Genero=" + gender;
     }
 }
