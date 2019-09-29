@@ -1,7 +1,7 @@
 #Internal package file, do not edit.
-#Sat Sep 28 18:53:01 COT 2019
+#Sat Sep 28 20:36:27 COT 2019
 0.baseType=DIRECTORY
-0.base=C\:\\Users\\Stiven\\AndroidStudioProjects\\MyApplication\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out
+0.base=D\:\\U\\7mo semestre\\IngeSoft 2_Moviles\\Ejercicios\\APIs\\StarWarsAPI\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out
 0.path=classes.dex
 0.set=DEX
 count=1

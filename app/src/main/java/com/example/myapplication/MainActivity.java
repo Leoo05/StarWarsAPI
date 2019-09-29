@@ -68,9 +68,8 @@ public class MainActivity extends AppCompatActivity {
     public void makeCallPeople(View v) throws JSONException {
         callWebService("people/");
         if (obj != null) {
-            textTitle.setText(JsonString);
             Intent next = new Intent(MainActivity.this, People.class);
-            next.putExtra("json", JsonString);
+            next.putExtra("json", obj.getString("results"));
             next.putExtra("nextPage", obj.getString("next"));
             startActivity(next);
         }
@@ -83,13 +82,13 @@ public class MainActivity extends AppCompatActivity {
         next.putExtra("nextPage", obj.getString("next"));
         startActivity(next);
     }
+
     public void callWebService(final String serviceEndPoint) {
 
         AsyncTask.execute(new Runnable() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void run() {
-
                 try {
                     String serv = serviceEndPoint;
                     URL urlService = new URL(URL_SWAPI + serviceEndPoint);
@@ -104,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
                         // Error handling code goes here
                         Log.v("ERROR", "ERROR");
                     }
-
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
@@ -112,13 +110,13 @@ public class MainActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
             }
         });
     }
 
-    public static String getStringFromInputStream(InputStream stream) throws IOException
-    {
+
+
+    public static String getStringFromInputStream(InputStream stream) throws IOException {
         int n = 0;
         char[] buffer = new char[1024 * 4];
         InputStreamReader reader = new InputStreamReader(stream, "UTF-8");
