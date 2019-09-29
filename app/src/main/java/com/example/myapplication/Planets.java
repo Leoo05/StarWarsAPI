@@ -16,12 +16,13 @@ import java.util.ArrayList;
 
 public class Planets extends AppCompatActivity {
 
-    static String json;
-    static ArrayList<Planeta> planetas;
-    static Button sig;
-    static Button ant;
-    static TextView atr;
-    static int index=0;
+    String json;
+    ArrayList<Planeta> listaPlanetas;
+    Button sig;
+    Button ant;
+    TextView atr;
+    int index=0;
+    String nextPage;
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
@@ -33,37 +34,54 @@ public class Planets extends AppCompatActivity {
         ant = findViewById(R.id.button_anterior);
         atr = findViewById(R.id.textView_atributos);
 
-        this.planetas = new ArrayList<>();
+        this.listaPlanetas = new ArrayList<>();
+        json = getIntent().getStringExtra("json");
+        nextPage = getIntent().getStringExtra("nextPage");
+        this.agregarPlanetas();
+
 
         sig.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                index = (index + 1) % (planetas.size() - 1);
-                atr.setText(planetas.get(index).toString());
+                index = (index + 1) % (listaPlanetas.size() - 1);
+                try {
+                    atr.setText(listaPlanetas.get(index).toString());
+                }  catch (IndexOutOfBoundsException e){
+                    atr.setText("F");
+                }
             }
         });
 
         ant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                index = (index - 1) % (planetas.size() - 1);
+                index = (index - 1) % (listaPlanetas.size() - 1);
+                try {
+                    atr.setText(listaPlanetas.get(index).toString());
+                }  catch (IndexOutOfBoundsException e){
+                    atr.setText("F");
+                }
             }
         });
 
-        json = getIntent().getStringExtra("json");
+    }
+
+    public void agregarPlanetas() {
         try {
-            JSONObject jsonObject = new JSONObject(json);
-            JSONArray arrPlanetas = new JSONArray(jsonObject.getJSONArray("results"));
-            for(int i=0;i<arrPlanetas.length();i++){
-                JSONObject planeta = arrPlanetas.getJSONObject(i);
-                this.planetas.add(new Planeta(planeta.getString("name"),planeta.getInt("rotationPeriod"),
-                        planeta.getInt("orbital_period"),planeta.getInt("diameter"),planeta.getString("temperature"),planeta.getString("gravity"),planeta.getString("terrain")
-                        ,planeta.getInt("surface_water"),planeta.getString("population")));
+            JSONArray jsonArray = new JSONArray(json);
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject planeta = jsonArray.getJSONObject(i);
+                this.listaPlanetas.add(new Planeta(planeta.getString("name"), planeta.getInt("rotation_period"),
+                        planeta.getInt("orbital_period"), planeta.getInt("diameter"),
+                        planeta.getString("climate"),
+                        planeta.getString("gravity"),
+                        planeta.getString("terrain"),
+                        planeta.getInt("surface_water"),
+                        planeta.getString("population")));
             }
         } catch (JSONException e) {
             e.printStackTrace();
+            atr.setText(nextPage);
         }
-        atr.setText(this.planetas.get(0).toString());
-
     }
 }
