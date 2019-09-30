@@ -1,4 +1,4 @@
-#Sat Sep 28 22:16:18 COT 2019
-base.0=C\:\\Users\\Stiven\\AndroidStudioProjects\\StarWarsAPI\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out
+#Sun Sep 29 16:39:50 COT 2019
+base.0=D\:\\U\\7mo semestre\\IngeSoft 2_Moviles\\Ejercicios\\APIs\\StarWarsAPI\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out
 path.0=classes.dex
 renamed.0=classes.dex

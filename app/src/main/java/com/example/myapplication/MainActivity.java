@@ -27,12 +27,11 @@ import javax.net.ssl.HttpsURLConnection;
 public class MainActivity extends AppCompatActivity {
 
     public static final String URL_SWAPI = "https://swapi.co/api/";
-    private TextView textTitle;
+    TextView textTitle;
     String JsonString;
     Button peopleButton;
     Button planetsButton;
     JSONObject obj;
-    String nextPage;
 
 
     @Override
@@ -42,57 +41,33 @@ public class MainActivity extends AppCompatActivity {
         textTitle = findViewById(R.id.textView_titulo);
         peopleButton = findViewById(R.id.button_personajes);
         planetsButton = findViewById(R.id.button_planetas);
-/*
-        peopleButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                makeCall(v, "people/");
-                    textTitle.setText(JsonString);
-                    Intent next = new Intent(MainActivity.this, People.class);
-                    next.putExtra("json", obj.toString());
-                    startActivity(next);
-            }
-        });
-
-        planetsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                makeCall(v, "planets/");
-                Intent next = new Intent(MainActivity.this, Planets.class);
-                next.putExtra("json", obj.toString());
-                startActivity(next);
-            }
-        });*/
     }
 
     public void makeCallPeople(View v) throws JSONException {
-        callWebService("people/");
+        /*callWebService("people/");
         if (obj != null) {
             Intent next = new Intent(MainActivity.this, People.class);
             next.putExtra("json", obj.getString("results"));
             next.putExtra("nextPage", obj.getString("next"));
             startActivity(next);
-        }
+        }*/
+        Intent next = new Intent(MainActivity.this, People.class);
+        startActivity(next);
     }
 
     public void makeCallPlanets(View v) throws JSONException {
-        callWebService("planets/");
         if(obj !=null) {
             Intent next = new Intent(MainActivity.this, Planets.class);
-            next.putExtra("json", obj.getString("results"));
-            next.putExtra("nextPage", obj.getString("next"));
             startActivity(next);
         }
     }
 
-    public void callWebService(final String serviceEndPoint) {
-
+ /*   public void callWebService(final String serviceEndPoint) {
         AsyncTask.execute(new Runnable() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void run() {
                 try {
-                    String serv = serviceEndPoint;
                     URL urlService = new URL(URL_SWAPI + serviceEndPoint);
                     HttpsURLConnection connection = (HttpsURLConnection) urlService.openConnection();
                     connection.setRequestMethod("GET");
@@ -125,5 +100,5 @@ public class MainActivity extends AppCompatActivity {
         StringWriter writer = new StringWriter();
         while (-1 != (n = reader.read(buffer))) writer.write(buffer, 0, n);
         return writer.toString();
-    }
+    }*/
 }
